@@ -1,7 +1,7 @@
 package com.thilshan.dms.entity;
 
+import com.thilshan.dms.emus.Status;
 import jakarta.persistence.*;
-import jakarta.transaction.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -59,6 +59,18 @@ public class Driver {
     private LocalDate joinDate;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
 
     // Relationships
     @OneToOne
