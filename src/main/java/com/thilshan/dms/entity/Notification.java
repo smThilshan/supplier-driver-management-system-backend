@@ -24,7 +24,6 @@ public class Notification {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private NotificationStatus status; // SENT or PENDING
-
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 

@@ -25,6 +25,7 @@ public class OrderMapper {
     // Convert Entity → ResponseDTO
     public OrderResponseDto toResponse(Order entity) {
         OrderResponseDto dto = new OrderResponseDto();
+        dto.setOrderId(entity.getId());
         dto.setOrderNo(entity.getOrderId());
         dto.setAmount(entity.getAmount());
         dto.setOrderDate(entity.getOrderDate());

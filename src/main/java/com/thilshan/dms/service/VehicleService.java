@@ -1,39 +1,19 @@
 package com.thilshan.dms.service;
 
-import com.thilshan.dms.entity.Driver;
-import com.thilshan.dms.entity.Vehicle;
-import com.thilshan.dms.repository.DriverRepository;
-import com.thilshan.dms.repository.VehicleRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.thilshan.dms.dto.vehicle.VehicleRequestDto;
+import com.thilshan.dms.dto.vehicle.VehicleResponseDto;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
-@RequiredArgsConstructor
-public class VehicleService {
-    private final VehicleRepository vehicleRepository;
-    private final DriverRepository driverRepository;
+public interface VehicleService {
+    VehicleResponseDto createVehicle(VehicleRequestDto dto);
 
-    public Vehicle createVehicle(Vehicle vehicle, Long driverId) {
-        if (driverId != null) {
-            Driver driver = driverRepository.findById(driverId)
-                    .orElseThrow(() -> new RuntimeException("Driver not found with ID: " + driverId));
-            vehicle.setDriver(driver);
-        }
-        return vehicleRepository.save(vehicle);
-    }
+    List<VehicleResponseDto> getAllVehicles();
 
-    public List<Vehicle> getAllVehicles() {
-        return vehicleRepository.findAll();
-    }
+    VehicleResponseDto getVehicleById(Long id);
 
-    public Optional<Vehicle> getVehicleById(Long id) {
-        return vehicleRepository.findById(id);
-    }
+    VehicleResponseDto updateVehicle(Long id, VehicleRequestDto dto);
 
-//    public Optional<Vehicle> getVehicleByVehicleNo(Long id) {
-//        return vehicleRepository.findById(id);
-//    }
+    void deleteVehicle(Long id);
+
 }

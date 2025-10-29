@@ -10,7 +10,6 @@ public class RealtimeLocation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private Double latitude;
     private Double longitude;
     private LocalDateTime timestamp;

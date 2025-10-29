@@ -1,5 +1,6 @@
 package com.thilshan.dms.entity;
 
+import com.thilshan.dms.emus.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,7 +25,7 @@ public class Order {
     private Integer orderCount;
     private String remarks;
     private Double amount;
-    private String status;
+    private Status status;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
