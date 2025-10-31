@@ -1,5 +1,6 @@
 package com.thilshan.dms.dto.admin;
 
+import com.thilshan.dms.emus.Role;
 import com.thilshan.dms.entity.Admin;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ public class AdminMapper {
                 .username(dto.getUsername())
                 .email(dto.getEmail())
                 .password(dto.getPassword())
-                .role(dto.getRole())
+                .role(Role.valueOf(dto.getRole()))
                 .build();
     }
 
@@ -21,7 +22,7 @@ public class AdminMapper {
                 .fullName(entity.getFullName())
                 .username(entity.getUsername())
                 .email(entity.getEmail())
-                .role(entity.getRole())
+                .role(String.valueOf(entity.getRole()))
                 .createdAt(entity.getCreatedAt())
                 .build();
     }

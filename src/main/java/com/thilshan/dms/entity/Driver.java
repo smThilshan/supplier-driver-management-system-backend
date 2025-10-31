@@ -1,6 +1,7 @@
 package com.thilshan.dms.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.thilshan.dms.emus.Role;
 import com.thilshan.dms.emus.Status;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,7 +39,12 @@ public class Driver {
     @Column(nullable = false)
     private String phoneNo;
     private String email;
+    @Column(nullable = false)
+    private String password;
     private String nationality;
+
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.DRIVER;
 
     @Column(unique = true, nullable = false)
     private String qid;

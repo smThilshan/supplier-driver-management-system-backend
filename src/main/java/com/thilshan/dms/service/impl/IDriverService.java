@@ -7,9 +7,11 @@ import com.thilshan.dms.entity.Driver;
 import com.thilshan.dms.repository.DriverRepository;
 import com.thilshan.dms.service.DriverService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -17,10 +19,16 @@ public class IDriverService implements DriverService {
 
     private final DriverRepository repository;
     private final DriverMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public DriverResponseDto createDriver(DriverRequestDto dto) {
+        // Generate a random password for the driver
+        String rawPassword = UUID.randomUUID().toString().substring(0, 8); // e.g. ab3f-9g1k
+        String encodedPassword = passwordEncoder.encode(rawPassword);
+
         Driver driver = mapper.toEntity(dto);
+        driver.setPassword(encodedPassword);
         driver.setDriverId("DID-"+System.currentTimeMillis());
         return mapper.toResponse(repository.save(driver));
     }

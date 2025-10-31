@@ -1,5 +1,6 @@
 package com.thilshan.dms.dto.order;
 
+import com.thilshan.dms.emus.Status;
 import com.thilshan.dms.entity.Driver;
 import com.thilshan.dms.entity.Order;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ public class OrderMapper {
                 .amount(dto.getAmount())              // From DTO
                 .driver(driver)                       // Set Driver entity
                 .orderDate(LocalDateTime.now())       // Auto-set current time
-                .status("PENDING")                    // Default status, can change later
+                .status(Status.valueOf("PENDING"))                    // Default status, can change later
                 .orderCount(1)                        // Default 1, can be updated
                 .remarks(null)                        // Optional
                 .build();

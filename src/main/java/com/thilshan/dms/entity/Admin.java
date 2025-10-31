@@ -1,5 +1,6 @@
 package com.thilshan.dms.entity;
 
+import com.thilshan.dms.emus.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDateTime;
@@ -21,8 +22,10 @@ public class Admin {
     @Column(nullable = false)
     private String password;
     private String email;
-    private String role;
+//    private String role;
     private String fullName;
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.ADMIN;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
