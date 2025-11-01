@@ -11,22 +11,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/drivers")
+@RequestMapping("/admin")
 @RequiredArgsConstructor
 public class DriverController {
     private final DriverService driverService;
 
-    @PostMapping
+    @PostMapping("/drivers")
     public ResponseEntity<DriverResponseDto> createDriver(@RequestBody DriverRequestDto dto) {
         return ResponseEntity.ok(driverService.createDriver(dto));
     }
 
-    @GetMapping
+    @GetMapping("/drivers")
     public ResponseEntity<List<DriverResponseDto>> getAllDrivers() {
         return ResponseEntity.ok(driverService.getAllDrivers());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/drivers/{id}")
     public ResponseEntity<DriverResponseDto> getDriverById(@PathVariable Long id) {
         return ResponseEntity.ok(driverService.getDriverById(id));
     }
@@ -38,7 +38,7 @@ public class DriverController {
 //                .orElse(ResponseEntity.notFound().build());
 //    }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/drivers/{id}")
     public ResponseEntity<Void> deleteDriver(@PathVariable Long id) {
         driverService.deleteDriver(id);
         return ResponseEntity.noContent().build();

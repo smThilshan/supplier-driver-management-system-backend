@@ -32,6 +32,15 @@ public class IOrderService implements OrderService {
     }
 
     @Override
+    public OrderResponseDto addDailyOrders(Long driverId, OrderRequestDto dto) {
+        Driver driver = driverRepository.findByDriverId((dto.getDriverId()))
+                .orElseThrow(() -> new RuntimeException("Driver Not Found"));
+
+        Order order = mapper.toEntity(dto, driver);
+        return mapper.toResponse(orderRepository.save(order));
+    }
+
+    @Override
     public List<OrderResponseDto> getAllOrders() {
         return orderRepository.findAll()
                 .stream()
@@ -44,6 +53,11 @@ public class IOrderService implements OrderService {
         Order order = orderRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order Not Found"));
         return mapper.toResponse(order);
+    }
+
+    @Override
+    public OrderResponseDto getOrdersByDriver(Long driverId) {
+        return null;
     }
 
     @Override

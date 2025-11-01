@@ -3,6 +3,7 @@ package com.thilshan.dms.service.impl;
 import com.thilshan.dms.dto.driver.DriverMapper;
 import com.thilshan.dms.dto.driver.DriverRequestDto;
 import com.thilshan.dms.dto.driver.DriverResponseDto;
+import com.thilshan.dms.emus.Role;
 import com.thilshan.dms.entity.Driver;
 import com.thilshan.dms.repository.DriverRepository;
 import com.thilshan.dms.service.DriverService;
@@ -30,6 +31,7 @@ public class IDriverService implements DriverService {
         Driver driver = mapper.toEntity(dto);
         driver.setPassword(encodedPassword);
         driver.setDriverId("DID-"+System.currentTimeMillis());
+        driver.setRole(Role.DRIVER);
         return mapper.toResponse(repository.save(driver));
     }
 
